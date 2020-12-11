@@ -1,0 +1,61 @@
+﻿@page
+@model booklist.Pages.Booklist.IndexModel
+@{
+}
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-info">Our book's Catalog</h2>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-danger" asp-page="create">Create new book</a>
+
+        </div>
+
+
+    </div>
+
+    <br> <br>
+
+    @if(Model.Books.Count() > 0) {
+    <table class="table table-striped border">
+        <tr class="table-secondary">
+           <th>
+              @Html.DisplayNameFor(m=>m.Books.FirstOrDefault().Name)
+           </th>
+           <th>
+              @Html.DisplayNameFor(m=>m.Books.FirstOrDefault().Author)
+           </th>
+           <th>@Html.DisplayNameFor(m=>m.Books.FirstOrDefault().Editor)
+           </th>
+           <th></th>
+       </tr> 
+       @foreach (var item in Model.Books)
+       {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m=>item.Name) 
+                </td>
+                <td>
+                    @Html.DisplayFor(m=>item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(m=>item.Editor)
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm"> Delete </button>
+                    <a asp-route-id="@item.Id" asp-page="Edit" class="btn btn-success btn-sm"> Edit </a>
+                </td>
+            </tr>
+           
+       }
+    </table>
+    }
+</div>
+
+
+
